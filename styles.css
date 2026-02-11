@@ -2386,3 +2386,38 @@ body.is-modal-open {
 }
 
 
+/* ✅ Mobile: título y texto mucho más grandes */
+@media (max-width: 600px) {
+  .love-note {
+    padding: 16px 16px;
+  }
+
+  .love-note__title {
+    font-size: 34px;
+    /* súbelo más si quieres */
+    line-height: 1.12;
+  }
+
+  .love-note__date {
+    font-size: 16px;
+    margin-top: 8px;
+  }
+
+  .love-note__text {
+    font-size: 20px;
+    /* texto principal más grande */
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+}
+
+/* (Opcional) Para móviles muy pequeños tipo 320px */
+@media (max-width: 360px) {
+  .love-note__title {
+    font-size: 30px;
+  }
+
+  .love-note__text {
+    font-size: 18px;
+  }
+}
