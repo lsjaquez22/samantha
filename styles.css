@@ -2386,38 +2386,40 @@ body.is-modal-open {
 }
 
 
-/* ✅ Mobile: título y texto mucho más grandes */
+/* ✅ Mobile: MUCHO más grande */
 @media (max-width: 600px) {
   .love-note {
-    padding: 16px 16px;
+    width: min(96vw, 980px);
+    padding: 18px 16px;
   }
 
   .love-note__title {
-    font-size: 34px;
-    /* súbelo más si quieres */
-    line-height: 1.12;
+    font-size: 44px;
+    /* MUY grande */
+    line-height: 1.08;
   }
 
   .love-note__date {
-    font-size: 16px;
-    margin-top: 8px;
+    font-size: 18px;
+    margin-top: 10px;
+    letter-spacing: 0.12em;
   }
 
   .love-note__text {
-    font-size: 20px;
-    /* texto principal más grande */
-    line-height: 1.5;
-    margin-top: 12px;
+    font-size: 24px;
+    /* texto principal */
+    line-height: 1.55;
+    margin-top: 14px;
   }
 }
 
-/* (Opcional) Para móviles muy pequeños tipo 320px */
-@media (max-width: 360px) {
+/* ✅ Extra: móviles chicos (320–380px) */
+@media (max-width: 380px) {
   .love-note__title {
-    font-size: 30px;
+    font-size: 40px;
   }
 
   .love-note__text {
-    font-size: 18px;
+    font-size: 22px;
   }
 }
