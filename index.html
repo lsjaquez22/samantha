@@ -17,7 +17,7 @@
     <div class="night"></div>
 
     <div class="flowers">
-      <div class="flower flower--1" data-flower="1" tabindex="0" role="button" aria-label="Ver fotos de la flor 1">
+      <div class="flower flower--1" data-flower="1" tabindex="0" role="button" aria-label="Nuestras Citas">
         <div class="flower__leafs flower__leafs--1">
           <div class="flower__leaf flower__leaf--1"></div>
           <div class="flower__leaf flower__leaf--2"></div>
@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div class="flower flower--2" data-flower="2" tabindex="0" role="button" aria-label="Ver fotos de la flor 2">
+      <div class="flower flower--2" data-flower="2" tabindex="0" role="button" aria-label="Nuestras Fiestas">
         <div class="flower__leafs flower__leafs--2">
           <div class="flower__leaf flower__leaf--1"></div>
           <div class="flower__leaf flower__leaf--2"></div>
@@ -71,7 +71,7 @@
         </div>
       </div>
 
-      <div class="flower flower--3" data-flower="3" tabindex="0" role="button" aria-label="Ver fotos de la flor 3">
+      <div class="flower flower--3" data-flower="3" tabindex="0" role="button" aria-label="Tu">
         <div class="flower__leafs flower__leafs--3">
           <div class="flower__leaf flower__leaf--1"></div>
           <div class="flower__leaf flower__leaf--2"></div>
@@ -97,7 +97,7 @@
         </div>
       </div>
 
-      <div class="flower flower--4" data-flower="4" tabindex="0" role="button" aria-label="Ver fotos de la flor 4">
+      <div class="flower flower--4" data-flower="4" tabindex="0" role="button" aria-label="Nosotros">
         <div class="flower__leafs flower__leafs--3">
           <div class="flower__leaf flower__leaf--1"></div>
           <div class="flower__leaf flower__leaf--2"></div>
@@ -124,7 +124,7 @@
       </div>
 
       <!-- 🌸 Flower 5 -->
-      <div class="flower flower--5" data-flower="5" tabindex="0" role="button" aria-label="Ver fotos de la flor 5">
+      <div class="flower flower--5" data-flower="5" tabindex="0" role="button" aria-label="Creel">
         <div class="flower__leafs flower__leafs--2">
           <div class="flower__leaf flower__leaf--1"></div>
           <div class="flower__leaf flower__leaf--2"></div>
@@ -151,7 +151,7 @@
       </div>
 
       <!-- 🌸 Flower 6 -->
-      <div class="flower flower--6" data-flower="6" tabindex="0" role="button" aria-label="Ver fotos de la flor 6">
+      <div class="flower flower--6" data-flower="6" tabindex="0" role="button" aria-label="CDMX">
         <div class="flower__leafs flower__leafs--1">
           <div class="flower__leaf flower__leaf--1"></div>
           <div class="flower__leaf flower__leaf--2"></div>
@@ -376,28 +376,28 @@
       // ✅ 1) Cambia estas rutas por tus fotos (pueden ser URLs o paths locales)
       const GALLERIES = {
         1: {
-          title: "Flor 1",
-          photos: ["./images/f1-1.jpg", "./images/f1-2.jpg", "./images/f1-3.jpg"],
+          title: "Nuestras Citas",
+          photos: ["./images/citas_1.jpeg", "./images/citas_2.jpeg", "./images/citas_3.jpeg"],
         },
         2: {
-          title: "Flor 2",
-          photos: ["./images/f2-1.jpg", "./images/f2-2.jpg"],
+          title: "Nuestras Fiestas",
+          photos: ["./images/fiestas_1.jpeg", "./images/fiestas_2.jpeg"],
         },
         3: {
-          title: "Flor 3",
-          photos: ["./images/f3-1.jpg", "./images/f3-2.jpg", "./images/f3-3.jpg", "./images/f3-4.jpg"],
+          title: "TU!!",
+          photos: ["./images/tu_1.jpeg", "./images/tu_2.jpeg", "./images/tu_3.jpeg"],
         },
         4: {
-          title: "Flor 4",
-          photos: ["./images/f4-1.jpg", "./images/f4-2.jpg"],
+          title: "Nosotros",
+          photos: ["./images/nosotros_1.jpeg", "./images/nosotros_2.jpeg", "./images/nosotros_3.jpeg", "./images/nosotros_4.jpeg"],
         },
         5: {
-          title: "Flor 5",
-          photos: ["./images/f5-1.jpg", "./images/f5-2.jpg", "./images/f5-3.jpg"],
+          title: "Creel",
+          photos: ["./images/creel_1.jpeg", "./images/creel_2.jpeg", "./images/creel_3.jpeg"],
         },
         6: {
-          title: "Flor 6",
-          photos: ["./images/f6-1.jpg"],
+          title: "CDMX",
+          photos: ["./images/cdmx_1.jpeg", "./images/cdmx_2.jpeg", "./images/cdmx_3.jpeg", "./images/cdmx_4.jpeg"],
         },
       };
 
@@ -465,6 +465,12 @@
         if (currentIndex >= photos.length) currentIndex = 0;
 
         img.src = photos[currentIndex];
+        img.onload = () => {
+          const w = img.naturalWidth || 1;
+          const h = img.naturalHeight || 1;
+          const ratio = `${w} / ${h}`;
+          document.querySelector(".gallery__stage").style.setProperty("--stage-ratio", ratio);
+        };
         img.alt = `${gallery.title ?? "Flor"} - Foto ${currentIndex + 1}`;
         counterEl.textContent = `${currentIndex + 1} / ${photos.length}`;
 
