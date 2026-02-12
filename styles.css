@@ -2527,3 +2527,102 @@ body.is-modal-open {
     max-height: 46vh;
   }
 }
+
+/* 1) Panel: que NUNCA exceda la pantalla */
+.gallery-modal__panel {
+  width: min(92vw, 920px);
+  max-height: 90vh;
+  overflow: hidden;
+
+  /* ✅ clave */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2) La galería debe poder “encogerse” dentro del panel */
+.gallery {
+  /* tu grid se queda igual */
+  flex: 1;
+  min-height: 0;
+  /* ✅ clave: permite que el stage se reduzca */
+}
+
+/* 3) Stage: ocupa el espacio disponible sin salirse */
+.gallery__stage {
+  width: 100%;
+  max-width: 100%;
+
+  /* ✅ clave */
+  height: 100%;
+  min-height: 0;
+
+  /* si usas aspect-ratio dinámico, mantenlo, pero NO dejes que domine el layout */
+  aspect-ratio: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* 4) Imagen: nunca más grande que el stage */
+.gallery__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+  display: block;
+}
+
+/* 5) Mobile: limita más el alto total */
+@media (max-width: 520px) {
+  .gallery-modal__panel {
+    max-height: 86vh;
+    /* un poquito más conservador */
+  }
+
+  .gallery {
+    margin-top: 18px;
+  }
+
+  .gallery__stage {
+    /* ✅ evita que en mobile el stage se vuelva enorme */
+    max-height: 52vh;
+  }
+}
+
+/* Mobile bajito (iPhone SE etc.) */
+@media (max-height: 700px) {
+  .gallery-modal__panel {
+    max-height: 82vh;
+  }
+
+  .gallery__stage {
+    max-height: 46vh;
+  }
+}
+
+.gallery__stage {
+  aspect-ratio: var(--stage-ratio, 4 / 3);
+}
+
+@media (max-width: 520px) {
+  .gallery__stage {
+    aspect-ratio: auto;
+  }
+
+  /* ✅ apaga ratio en mobile */
+}
+
+.gallery-modal__panel {
+  max-height: 90dvh;
+}
+
+@media (max-width: 520px) {
+  .gallery-modal__panel {
+    max-height: 86dvh;
+  }
+}
