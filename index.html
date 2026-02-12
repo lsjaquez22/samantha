@@ -456,6 +456,25 @@
         }
       }
 
+      function setStageRatioFromImage() {
+        const stage = document.querySelector(".gallery__stage");
+        if (!stage) return;
+
+        const w = img.naturalWidth || 1;
+        const h = img.naturalHeight || 1;
+
+        // ratio real
+        let r = w / h;
+
+        // ✅ clamp: evita ratios extremos que rompen mobile (panorámicas o súper altas)
+        // puedes ajustar estos números si quieres
+        const MIN = 0.75;  // ~3:4 (vertical)
+        const MAX = 1.78;  // ~16:9 (horizontal)
+        r = Math.max(MIN, Math.min(MAX, r));
+
+        stage.style.setProperty("--stage-ratio", `${r} / 1`);
+      }
+
       function renderSlide() {
         const gallery = GALLERIES[currentFlowerId];
         const photos = gallery.photos;
@@ -464,13 +483,8 @@
         if (currentIndex < 0) currentIndex = photos.length - 1;
         if (currentIndex >= photos.length) currentIndex = 0;
 
+        img.onload = setStageRatioFromImage;
         img.src = photos[currentIndex];
-        img.onload = () => {
-          const w = img.naturalWidth || 1;
-          const h = img.naturalHeight || 1;
-          const ratio = `${w} / ${h}`;
-          document.querySelector(".gallery__stage").style.setProperty("--stage-ratio", ratio);
-        };
         img.alt = `${gallery.title ?? "Flor"} - Foto ${currentIndex + 1}`;
         counterEl.textContent = `${currentIndex + 1} / ${photos.length}`;
 

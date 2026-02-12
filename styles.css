@@ -2438,3 +2438,92 @@ body.is-modal-open {
   height: 100%;
   object-fit: contain;
 }
+
+.gallery-modal__panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 920px);
+  max-height: 90vh;
+  /* ✅ evita overflow en mobile */
+  overflow: hidden;
+  /* ✅ sin scroll en el panel */
+  border-radius: 18px;
+  background: rgba(10, 10, 20, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  padding: 14px;
+}
+
+/* Grid del carrusel */
+.gallery {
+  display: grid;
+  grid-template-columns: 46px 1fr 46px;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+/* ✅ Stage base: ocupa el ancho disponible del centro (1fr) */
+.gallery__stage {
+  aspect-ratio: var(--stage-ratio, 4 / 3);
+  width: 100%;
+  max-width: 100%;
+  max-height: min(62vh, 540px);
+  height: auto;
+
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ✅ Mobile: botones más pequeños + stage con altura más controlada */
+@media (max-width: 520px) {
+  .gallery {
+    grid-template-columns: 38px 1fr 38px;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .gallery__nav {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    font-size: 24px;
+  }
+
+  .gallery__stage {
+    max-height: 52vh;
+    /* ✅ baja la altura en mobile */
+    padding: 6px;
+  }
+
+  .gallery__title {
+    font-size: 14px;
+  }
+
+  .gallery__counter {
+    font-size: 12px;
+  }
+}
+
+/* ✅ Mobile “bajito” (iPhone SE etc) */
+@media (max-height: 700px) {
+  .gallery__stage {
+    max-height: 46vh;
+  }
+}
